@@ -1,3 +1,4 @@
+
 package com.fpt.entity;
 
 import javax.persistence.*;
@@ -92,3 +93,4 @@ public class Publisher {
         this.books = books;
     }
 }
+

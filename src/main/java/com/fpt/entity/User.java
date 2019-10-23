@@ -1,3 +1,4 @@
+
 package com.fpt.entity;
 
 import javax.persistence.*;
@@ -137,3 +138,4 @@ public class User {
         this.orders = orders;
     }
 }
+

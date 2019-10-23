@@ -24,7 +24,7 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+   @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
@@ -133,7 +133,7 @@ public class Book {
         this.author = author;
     }
 
-    public Publisher getPublisher() {
+   public Publisher getPublisher() {
         return publisher;
     }
 
