@@ -1,3 +1,4 @@
+
 package com.fpt.entity;
 
 import javax.persistence.*;

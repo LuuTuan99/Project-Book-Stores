@@ -1,27 +1,22 @@
+package com.fpt.dto;
 
-package com.fpt.entity;
+import com.fpt.entity.Author;
+import com.fpt.util.ObjectUtil;
 
-import javax.persistence.*;
-import java.util.Set;
-
-@Entity
-public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class AuthorDTO {
     private long id;
-    private long total;
+    private String name;
+    private String img;
+    private String description;
 
     private long createAt;
     private long updateAt;
     private long deleteAt;
     private int status;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<OrderDetail> orderDetails;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+    public AuthorDTO(Author author) {
+        ObjectUtil.cloneObject(this, author);
+    }
 
     public long getId() {
         return id;
@@ -31,12 +26,28 @@ public class Order {
         this.id = id;
     }
 
-    public long getTotal() {
-        return total;
+    public String getName() {
+        return name;
     }
 
-    public void setTotal(long total) {
-        this.total = total;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getCreateAt() {
@@ -70,21 +81,4 @@ public class Order {
     public void setStatus(int status) {
         this.status = status;
     }
-
-    public Set<OrderDetail> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(Set<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
-
