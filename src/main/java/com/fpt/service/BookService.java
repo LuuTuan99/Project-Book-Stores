@@ -25,7 +25,7 @@ public class BookService {
         return bookRepository.findAll(PageRequest.of(page - 1, limit));
     }
 
-    public Book book(long id) {
+    public Book getById(long id) {
         return bookRepository.findById(id).orElse(null);
     }
 
