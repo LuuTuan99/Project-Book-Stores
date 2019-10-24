@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.stream.Collectors;
 
 @RestController
@@ -32,6 +30,67 @@ public class BookController {
                .addData(bookPage.getContent().stream().map(x -> new BookDTO(x)).collect(Collectors.toList()))
                .setPagination(new RESTPagination(page, limit, bookPage.getTotalPages(), bookPage.getTotalElements()))
                .build(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Object> store(@RequestBody Book book) {
+        return new ResponseEntity<>(new RESTResponse.Success()
+                  .setStatus(HttpStatus.CREATED.value())
+                  .setMessage("Success!")
+                  .addData(new BookDTO(bookService.create(book)))
+                  .build(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public ResponseEntity<Object> getDetail(@PathVariable long id) {
+        Book book = bookService.getById(id);
+        if (book == null) {
+            return new ResponseEntity<>(new RESTResponse.SimpleError()
+                   .setCode(HttpStatus.NOT_FOUND.value())
+                   .setMessage("Not Found!")
+                   .build(), HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(new RESTResponse.Success()
+                   .setStatus(HttpStatus.OK.value())
+                   .setMessage("Success!")
+                   .addData(new BookDTO(bookService.getById(id)))
+                   .build(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    public ResponseEntity<Object> update(@PathVariable long id, @RequestBody Book bookUpdate) {
+        Book existBook = bookService.getById(id);
+        if (existBook == null) {
+            return new ResponseEntity<>(new RESTResponse.SimpleError()
+                     .setCode(HttpStatus.NOT_FOUND.value())
+                     .setMessage("Not Found!")
+                     .build(), HttpStatus.NOT_FOUND);
+        }
+
+        existBook.setName(bookUpdate.getName());
+        return new ResponseEntity<>(new RESTResponse.Success()
+                   .setStatus(HttpStatus.OK.value())
+                   .setMessage("Success!")
+                   .addData(new BookDTO(bookService.update(existBook)))
+                   .build(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    public ResponseEntity<Object> delete(@PathVariable long id) {
+        Book existBook = bookService.getById(id);
+
+        if (existBook == null) {
+            return new ResponseEntity<>(new RESTResponse.SimpleError()
+                   .setCode(HttpStatus.NOT_FOUND.value())
+                   .setMessage("Not Found!")
+                   .build(), HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(new RESTResponse.Success()
+                   .setStatus(HttpStatus.OK.value())
+                   .setMessage("Success!")
+                   .build(), HttpStatus.OK);
     }
 
 }
