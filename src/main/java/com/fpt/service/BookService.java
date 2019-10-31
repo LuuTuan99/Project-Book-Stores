@@ -33,18 +33,18 @@ public class BookService {
     public Book create(Book book) {
         book.setId(Calendar.getInstance().getTimeInMillis());
         book.setStatus(1);
-        book.setCreateAt(Calendar.getInstance().getTimeInMillis());
-        book.setUpdateAt(Calendar.getInstance().getTimeInMillis());
+        book.setCreatedAt(Calendar.getInstance().getTimeInMillis());
+        book.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         return bookRepository.save(book);
     }
 
     public Book update(Book book) {
-        book.setUpdateAt(Calendar.getInstance().getTimeInMillis());
+        book.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         return bookRepository.save(book);
     }
 
     public boolean delete(Book book) {
-        book.setDeleteAt(Calendar.getInstance().getTimeInMillis());
+        book.setDeletedAt(Calendar.getInstance().getTimeInMillis());
         book.setStatus(-1);
         bookRepository.save(book);
         return true;

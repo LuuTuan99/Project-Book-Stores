@@ -31,18 +31,18 @@ public class AuthorService {
     public Author create(Author author) {
 
         author.setStatus(1);
-        author.setCreateAt(Calendar.getInstance().getTimeInMillis());
-        author.setUpdateAt(Calendar.getInstance().getTimeInMillis());
+        author.setCreatedAt(Calendar.getInstance().getTimeInMillis());
+        author.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         return authorRepository.save(author);
     }
 
     public Author update(Author author) {
-        author.setUpdateAt(Calendar.getInstance().getTimeInMillis());
+        author.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         return authorRepository.save(author);
     }
 
     public boolean delete(Author author) {
-        author.setDeleteAt(Calendar.getInstance().getTimeInMillis());
+        author.setDeletedAt(Calendar.getInstance().getTimeInMillis());
         author.setStatus(-1);
         authorRepository.save(author);
         return  true;
