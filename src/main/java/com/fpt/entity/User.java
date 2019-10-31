@@ -6,22 +6,60 @@ import java.util.Set;
 
 @Entity
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String email;
-    private String password;
+    private String hashPassword;
     private String username;
-    private String img;
+    private String avatar;
     private String phone;
     private String address;
     private String gender;
-    private String role;
+    private int role;
 
-    private long createAt;
-    private long updateAt;
-    private long deleteAt;
+    private long createdAt;
+    private long updatedAt;
+    private long deletedAt;
     private int status;
+
+    public enum Status {
+        ACTIVE(1), DEACTIVE(0), DELETED(-1);
+
+        private int value;
+
+        Status(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+    }
+
+
+    public enum Role {
+        USER(1), ADMIN(99);
+
+        private int value;
+
+        Role(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+    }
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Order> orders;
@@ -42,12 +80,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getHashPassword() {
+        return hashPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setHashPassword(String hashPassword) {
+        this.hashPassword = hashPassword;
     }
 
     public String getUsername() {
@@ -58,12 +96,12 @@ public class User {
         this.username = username;
     }
 
-    public String getImg() {
-        return img;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getPhone() {
@@ -90,36 +128,36 @@ public class User {
         this.gender = gender;
     }
 
-    public String getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 
-    public long getCreateAt() {
-        return createAt;
+    public long getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(long createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public long getUpdateAt() {
-        return updateAt;
+    public long getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(long updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public long getDeleteAt() {
-        return deleteAt;
+    public long getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleteAt(long deleteAt) {
-        this.deleteAt = deleteAt;
+    public void setDeletedAt(long deletedAt) {
+        this.deletedAt = deletedAt;
     }
 
     public int getStatus() {

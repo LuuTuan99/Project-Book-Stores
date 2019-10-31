@@ -8,18 +8,35 @@ import java.util.Set;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private String img;
+    private String thumbnail;
     private String description;
-
-    private long createAt;
-    private long updateAt;
-    private long deleteAt;
+    private long createdAt;
+    private long updatedAt;
+    private long deletedAt;
     private int status;
 
-   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "categories")
+    public enum Status {
+        ACTIVE(1), DEACTIVE(0), DELETED(-1);
+
+        private int value;
+
+        Status(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+    }
+
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "categories")
     private Set<Book> books;
 
     public long getId() {
@@ -38,12 +55,12 @@ public class Category {
         this.name = name;
     }
 
-    public String getImg() {
-        return img;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public String getDescription() {
@@ -54,28 +71,28 @@ public class Category {
         this.description = description;
     }
 
-    public long getCreateAt() {
-        return createAt;
+    public long getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(long createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public long getUpdateAt() {
-        return updateAt;
+    public long getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(long updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public long getDeleteAt() {
-        return deleteAt;
+    public long getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleteAt(long deleteAt) {
-        this.deleteAt = deleteAt;
+    public void setDeletedAt(long deletedAt) {
+        this.deletedAt = deletedAt;
     }
 
     public int getStatus() {

@@ -5,6 +5,7 @@ import com.fpt.util.DateTimeUtil;
 import com.fpt.util.ObjectUtil;
 
 public class BookDTO {
+
     private long id;
     private String name;
     private String description;
@@ -20,18 +21,17 @@ public class BookDTO {
     private String deleteAt;
     private String status;
 
-
     public BookDTO() {
     }
 
-    public BookDTO(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public BookDTO(Book book) {
-        this.description = "";
-        this.img = "";
+        this.id = book.getId();
+        this.name = book.getName();
+        this.description = book.getDescription();
+        this.price = book.getPrice();
+        this.img = book.getImg();
+        this.quantity = book.getQuantity();
+        this.sale = book.getSale();
         ObjectUtil.cloneObject(this, book);
         this.authorName = book.getAuthor().getName();
         this.publisherName = book.getPublisher().getName();
@@ -39,6 +39,7 @@ public class BookDTO {
         this.updateAt = DateTimeUtil.formatDateFromLong(book.getUpdateAt());
         this.deleteAt = DateTimeUtil.formatDateFromLong(book.getDeleteAt());
         this.status = book.getStatus() == 1 ? "Active" : "Deactive";
+
     }
 
     public long getId() {
@@ -97,21 +98,6 @@ public class BookDTO {
         this.sale = sale;
     }
 
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
-    public String getPublisherName() {
-        return publisherName;
-    }
-
-    public void setPublisherName(String publisherName) {
-        this.publisherName = publisherName;
-    }
 
     public String getCreateAt() {
         return createAt;
@@ -143,5 +129,21 @@ public class BookDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public String getPublisherName() {
+        return publisherName;
+    }
+
+    public void setPublisherName(String publisherName) {
+        this.publisherName = publisherName;
     }
 }

@@ -5,37 +5,54 @@ import java.util.Set;
 
 @Entity
 public class Book {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
     private String description;
     private double price;
-    private String img;
+    private String photos; // anh1.png,anh2.png | lúc lấy ra thì split theo dấu ,
     private int quantity;
-    private double sale;
-
-    private long createAt;
-    private long updateAt;
-    private long deleteAt;
+    private double saleOf;
+    private long createdAt;
+    private long updatedAt;
+    private long deletedAt;
     private int status;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private Author author;
 
-   @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "category_book",
-               joinColumns = @JoinColumn(name = "category_id"),
-               inverseJoinColumns = @JoinColumn(name = "book_id"))
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private Set<Category> categories;
 
     @OneToOne(mappedBy = "book")
     private OrderDetail orderDetail;
+
+    public enum Status {
+        ACTIVE(1), DEACTIVE(0), DELETED(-1);
+
+        private int value;
+
+        Status(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+    }
 
     public long getId() {
         return id;
@@ -69,12 +86,12 @@ public class Book {
         this.price = price;
     }
 
-    public String getImg() {
-        return img;
+    public String getPhotos() {
+        return photos;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setPhotos(String photos) {
+        this.photos = photos;
     }
 
     public int getQuantity() {
@@ -85,36 +102,36 @@ public class Book {
         this.quantity = quantity;
     }
 
-    public double getSale() {
-        return sale;
+    public double getSaleOf() {
+        return saleOf;
     }
 
-    public void setSale(double sale) {
-        this.sale = sale;
+    public void setSaleOf(double saleOf) {
+        this.saleOf = saleOf;
     }
 
-    public long getCreateAt() {
-        return createAt;
+    public long getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(long createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public long getUpdateAt() {
-        return updateAt;
+    public long getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(long updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public long getDeleteAt() {
-        return deleteAt;
+    public long getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleteAt(long deleteAt) {
-        this.deleteAt = deleteAt;
+    public void setDeletedAt(long deletedAt) {
+        this.deletedAt = deletedAt;
     }
 
     public int getStatus() {
@@ -133,7 +150,7 @@ public class Book {
         this.author = author;
     }
 
-   public Publisher getPublisher() {
+    public Publisher getPublisher() {
         return publisher;
     }
 

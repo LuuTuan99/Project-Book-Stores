@@ -1,6 +1,11 @@
 package com.fpt.dto;
+import com.fpt.entity.Book;
 import com.fpt.entity.Publisher;
+import com.fpt.util.DateTimeUtil;
 import com.fpt.util.ObjectUtil;
+
+import java.util.ArrayList;
+import java.util.Set;
 
 public class PublisherDTO {
     private long id;
@@ -8,13 +13,24 @@ public class PublisherDTO {
     private String img;
     private String description;
 
-    private long createAt;
-    private long updateAt;
-    private long deleteAt;
-    private int status;
+    private String createAt;
+    private String updateAt;
+    private String deleteAt;
+    private String status;
+
+    public PublisherDTO() {
+    }
 
     public PublisherDTO(Publisher publisher) {
-        ObjectUtil.cloneObject(this, publisher);
+        this.name = publisher.getName();
+        this.img = publisher.getImg();
+        this.description = publisher.getDescription();
+        this.createAt = DateTimeUtil.formatDateFromLong(publisher.getCreateAt());
+        this.updateAt = DateTimeUtil.formatDateFromLong(publisher.getUpdateAt());
+        this.deleteAt = DateTimeUtil.formatDateFromLong(publisher.getDeleteAt());
+        this.status = publisher.getStatus() == 1 ? "Active" : "Deactive";
+
+
     }
 
     public long getId() {
@@ -49,35 +65,36 @@ public class PublisherDTO {
         this.description = description;
     }
 
-    public long getCreateAt() {
+    public String getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(long createAt) {
+    public void setCreateAt(String createAt) {
         this.createAt = createAt;
     }
 
-    public long getUpdateAt() {
+    public String getUpdateAt() {
         return updateAt;
     }
 
-    public void setUpdateAt(long updateAt) {
+    public void setUpdateAt(String updateAt) {
         this.updateAt = updateAt;
     }
 
-    public long getDeleteAt() {
+    public String getDeleteAt() {
         return deleteAt;
     }
 
-    public void setDeleteAt(long deleteAt) {
+    public void setDeleteAt(String deleteAt) {
         this.deleteAt = deleteAt;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
+
 }

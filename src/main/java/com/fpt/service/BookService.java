@@ -29,7 +29,9 @@ public class BookService {
         return bookRepository.findById(id).orElse(null);
     }
 
+
     public Book create(Book book) {
+        book.setId(Calendar.getInstance().getTimeInMillis());
         book.setStatus(1);
         book.setCreateAt(Calendar.getInstance().getTimeInMillis());
         book.setUpdateAt(Calendar.getInstance().getTimeInMillis());
