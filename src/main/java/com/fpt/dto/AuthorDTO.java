@@ -1,7 +1,13 @@
 package com.fpt.dto;
 
 import com.fpt.entity.Author;
+import com.fpt.entity.Book;
+import com.fpt.util.DateTimeUtil;
 import com.fpt.util.ObjectUtil;
+
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class AuthorDTO {
     private long id;
@@ -9,13 +15,27 @@ public class AuthorDTO {
     private String img;
     private String description;
 
-    private long createAt;
-    private long updateAt;
-    private long deleteAt;
-    private int status;
+    private String createAt;
+    private String updateAt;
+    private String deleteAt;
+    private String status;
+    private Set<Book> listBook;
+
+    public AuthorDTO() {
+    }
+
 
     public AuthorDTO(Author author) {
+        this.name = author.getName();
+        this.img = author.getImg();
+        this.description = author.getDescription();
         ObjectUtil.cloneObject(this, author);
+        this.createAt = DateTimeUtil.formatDateFromLong(author.getCreateAt());
+        this.updateAt = DateTimeUtil.formatDateFromLong(author.getUpdateAt());
+        this.deleteAt = DateTimeUtil.formatDateFromLong(author.getDeleteAt());
+        this.status = author.getStatus() == 1 ? "Active" : "Deactive";
+
+
     }
 
     public long getId() {
@@ -50,35 +70,43 @@ public class AuthorDTO {
         this.description = description;
     }
 
-    public long getCreateAt() {
+    public String getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(long createAt) {
+    public void setCreateAt(String createAt) {
         this.createAt = createAt;
     }
 
-    public long getUpdateAt() {
+    public String getUpdateAt() {
         return updateAt;
     }
 
-    public void setUpdateAt(long updateAt) {
+    public void setUpdateAt(String updateAt) {
         this.updateAt = updateAt;
     }
 
-    public long getDeleteAt() {
+    public String getDeleteAt() {
         return deleteAt;
     }
 
-    public void setDeleteAt(long deleteAt) {
+    public void setDeleteAt(String deleteAt) {
         this.deleteAt = deleteAt;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Set<Book> getListBook() {
+        return listBook;
+    }
+
+    public void setListBook(Set<Book> listBook) {
+        this.listBook = listBook;
     }
 }
