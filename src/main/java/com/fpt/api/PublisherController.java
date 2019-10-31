@@ -44,7 +44,7 @@ public class PublisherController {
     public ResponseEntity<Object> create(@RequestBody PublisherDTO publisherDTO) {
        Publisher publisher = new Publisher();
        publisher.setName(publisherDTO.getName());
-       publisher.setAvatar(publisherDTO.getImg());
+       publisher.setAvatar(publisherDTO.getAvatar());
        publisher.setDescription(publisherDTO.getDescription());
         return new ResponseEntity<>(new RESTResponse.Success()
                   .setStatus(HttpStatus.OK.value())

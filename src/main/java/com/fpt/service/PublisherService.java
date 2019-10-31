@@ -31,18 +31,18 @@ public class PublisherService {
     public Publisher create(Publisher publisher) {
         publisher.setId(Calendar.getInstance().getTimeInMillis());
         publisher.setStatus(1);
-        publisher.setCreateAt(Calendar.getInstance().getTimeInMillis());
-        publisher.setUpdateAt(Calendar.getInstance().getTimeInMillis());
+        publisher.setCreatedAt(Calendar.getInstance().getTimeInMillis());
+        publisher.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         return publisherRepository.save(publisher);
     }
 
     public Publisher update(Publisher publisher) {
-        publisher.setUpdateAt(Calendar.getInstance().getTimeInMillis());
+        publisher.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         return publisherRepository.save(publisher);
     }
 
     public boolean delete(Publisher publisher) {
-        publisher.setDeleteAt(Calendar.getInstance().getTimeInMillis());
+        publisher.setDeletedAt(Calendar.getInstance().getTimeInMillis());
         publisher.setStatus(-1);
         publisherRepository.save(publisher);
         return true;

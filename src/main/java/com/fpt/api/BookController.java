@@ -51,10 +51,10 @@ public class BookController {
         Book book = new Book();
         book.setName(bookDTO.getName());
         book.setDescription(bookDTO.getDescription());
-        book.setPhotos(bookDTO.getImg());
+        book.setPhotos(bookDTO.getPhoto());
         book.setPrice(bookDTO.getPrice());
         book.setQuantity(bookDTO.getQuantity());
-        book.setSaleOf(bookDTO.getSale());
+        book.setSaleOf(bookDTO.getSaleOf());
         book.setAuthor(author);
         book.setPublisher(publisher);
         return new ResponseEntity<>(new RESTResponse.Success()

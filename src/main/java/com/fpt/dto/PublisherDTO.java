@@ -10,7 +10,7 @@ import java.util.Set;
 public class PublisherDTO {
     private long id;
     private String name;
-    private String img;
+    private String avatar;
     private String description;
 
     private String createAt;
@@ -23,11 +23,11 @@ public class PublisherDTO {
 
     public PublisherDTO(Publisher publisher) {
         this.name = publisher.getName();
-        this.img = publisher.getImg();
+        this.avatar = publisher.getAvatar();
         this.description = publisher.getDescription();
-        this.createAt = DateTimeUtil.formatDateFromLong(publisher.getCreateAt());
-        this.updateAt = DateTimeUtil.formatDateFromLong(publisher.getUpdateAt());
-        this.deleteAt = DateTimeUtil.formatDateFromLong(publisher.getDeleteAt());
+        this.createAt = DateTimeUtil.formatDateFromLong(publisher.getCreatedAt());
+        this.updateAt = DateTimeUtil.formatDateFromLong(publisher.getUpdatedAt());
+        this.deleteAt = DateTimeUtil.formatDateFromLong(publisher.getDeletedAt());
         this.status = publisher.getStatus() == 1 ? "Active" : "Deactive";
 
 
@@ -49,12 +49,12 @@ public class PublisherDTO {
         this.name = name;
     }
 
-    public String getImg() {
-        return img;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getDescription() {
@@ -96,5 +96,4 @@ public class PublisherDTO {
     public void setStatus(String status) {
         this.status = status;
     }
-
 }
