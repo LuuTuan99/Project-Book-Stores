@@ -20,7 +20,7 @@ public class AuthorService {
         return authorRepository.findActiveAuthor(1);
     }
 
-    public Page<Author> authorPage(int page, int limit) {
+        public Page<Author> authorPage(int page, int limit) {
         return authorRepository.findAll(PageRequest.of(page - 1, limit));
     }
 
@@ -31,7 +31,11 @@ public class AuthorService {
     public Author create(Author author) {
 
         author.setStatus(1);
+<<<<<<< HEAD
+        author.setDeletedAt(Calendar.getInstance().getTimeInMillis());
+=======
         author.setCreatedAt(Calendar.getInstance().getTimeInMillis());
+>>>>>>> 7099d85cc537bd94fb2b5f2347474f2cb7ab7055
         author.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         return authorRepository.save(author);
     }

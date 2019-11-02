@@ -29,6 +29,17 @@ public class BookDTO {
         this.name = book.getName();
         this.description = book.getDescription();
         this.price = book.getPrice();
+<<<<<<< HEAD
+        this.img = book.getPhotos();
+        this.quantity = book.getQuantity();
+        this.sale = book.getSaleOf();
+        ObjectUtil.cloneObject(this, book);
+        this.authorName = book.getAuthor().getName();
+        this.publisherName = book.getPublisher().getName();
+        this.createAt = DateTimeUtil.formatDateFromLong(book.getCreatedAt());
+        this.updateAt = DateTimeUtil.formatDateFromLong(book.getUpdatedAt());
+        this.deleteAt = DateTimeUtil.formatDateFromLong(book.getDeletedAt());
+=======
         this.photo = book.getPhotos();
         this.quantity = book.getQuantity();
         this.saleOf = book.getSaleOf();
@@ -38,6 +49,7 @@ public class BookDTO {
         this.createdAt = DateTimeUtil.formatDateFromLong(book.getCreatedAt());
         this.updatedAt = DateTimeUtil.formatDateFromLong(book.getUpdatedAt());
         this.deletedAt = DateTimeUtil.formatDateFromLong(book.getDeletedAt());
+>>>>>>> 7099d85cc537bd94fb2b5f2347474f2cb7ab7055
         this.status = book.getStatus() == 1 ? "Active" : "Deactive";
 
     }

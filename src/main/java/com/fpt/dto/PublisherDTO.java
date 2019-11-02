@@ -1,11 +1,7 @@
 package com.fpt.dto;
-import com.fpt.entity.Book;
+
 import com.fpt.entity.Publisher;
 import com.fpt.util.DateTimeUtil;
-import com.fpt.util.ObjectUtil;
-
-import java.util.ArrayList;
-import java.util.Set;
 
 public class PublisherDTO {
     private long id;
@@ -23,11 +19,19 @@ public class PublisherDTO {
 
     public PublisherDTO(Publisher publisher) {
         this.name = publisher.getName();
+<<<<<<< HEAD
+        this.img = publisher.getAvatar();
+        this.description = publisher.getDescription();
+        this.createAt = DateTimeUtil.formatDateFromLong(publisher.getCreatedAt());
+        this.updateAt = DateTimeUtil.formatDateFromLong(publisher.getUpdatedAt());
+        this.deleteAt = DateTimeUtil.formatDateFromLong(publisher.getUpdatedAt());
+=======
         this.avatar = publisher.getAvatar();
         this.description = publisher.getDescription();
         this.createAt = DateTimeUtil.formatDateFromLong(publisher.getCreatedAt());
         this.updateAt = DateTimeUtil.formatDateFromLong(publisher.getUpdatedAt());
         this.deleteAt = DateTimeUtil.formatDateFromLong(publisher.getDeletedAt());
+>>>>>>> 7099d85cc537bd94fb2b5f2347474f2cb7ab7055
         this.status = publisher.getStatus() == 1 ? "Active" : "Deactive";
 
 

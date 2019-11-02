@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>bookID</th>
+        <th>Name</th>
+    </tr>
+    <tr th:each="book :${listBook}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.name}"></td>
+        <td><a th:href="@{'/shopping-card/create/' + ${book.id}}">Crate</a></td>
+    </tr>
+    <th:block th:if="${!#lists.isEmpty(listCartItem)}">
+        <tr th:each="cartItem :${listCartItem}">
+            <td th:text="${cartItem.getBookId()}"></td>
+            <td th:text="${cartItem.getQuantity()}"></td>
+        </tr>
+    </th:block>
+
+
+
+</table>
+
+</body>
+</html>

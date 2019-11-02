@@ -9,6 +9,7 @@ public class CartItem {
     private double bookPrice;
 
     public int getQuantity() {
+
         return quantity;
     }
 

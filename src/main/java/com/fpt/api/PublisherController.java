@@ -46,11 +46,11 @@ public class PublisherController {
        publisher.setName(publisherDTO.getName());
        publisher.setAvatar(publisherDTO.getAvatar());
        publisher.setDescription(publisherDTO.getDescription());
-        return new ResponseEntity<>(new RESTResponse.Success()
-                  .setStatus(HttpStatus.OK.value())
-                  .setMessage("Success!")
-                  .addData(new PublisherDTO(publisherService.create(publisher)))
-                  .build(), HttpStatus.OK);
+            return new ResponseEntity<>(new RESTResponse.Success()
+                      .setStatus(HttpStatus.OK.value())
+                      .setMessage("Success!")
+                      .addData(new PublisherDTO(publisherService.create(publisher)))
+                      .build(), HttpStatus.OK);
    }
 
    @RequestMapping(method = RequestMethod.GET, value = "/{id}")

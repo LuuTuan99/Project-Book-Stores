@@ -27,12 +27,21 @@ public class AuthorDTO {
 
     public AuthorDTO(Author author) {
         this.name = author.getName();
+<<<<<<< HEAD
+        this.img = author.getAvatar();
+        this.description = author.getDescription();
+        ObjectUtil.cloneObject(this, author);
+        this.createAt = DateTimeUtil.formatDateFromLong(author.getCreatedAt());
+        this.updateAt = DateTimeUtil.formatDateFromLong(author.getUpdatedAt());
+        this.deleteAt = DateTimeUtil.formatDateFromLong(author.getDeletedAt());
+=======
         this.avatar = author.getAvatar();
         this.description = author.getDescription();
         ObjectUtil.cloneObject(this, author);
         this.createdAt = DateTimeUtil.formatDateFromLong(author.getCreatedAt());
         this.updatedAt = DateTimeUtil.formatDateFromLong(author.getUpdatedAt());
         this.deletedAt = DateTimeUtil.formatDateFromLong(author.getDeletedAt());
+>>>>>>> 7099d85cc537bd94fb2b5f2347474f2cb7ab7055
         this.status = author.getStatus() == 1 ? "Active" : "Deactive";
 
 
