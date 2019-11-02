@@ -46,7 +46,7 @@ public class AuthorController {
         Author author = new Author();
         author.setId(Calendar.getInstance().getTimeInMillis());
         author.setName(authorDTO.getName());
-        author.setImg(authorDTO.getImg());
+        author.setAvatar(authorDTO.getImg());
         author.setDescription(authorDTO.getDescription());
         return new ResponseEntity<>(new RESTResponse.Success()
                   .setStatus(HttpStatus.CREATED.value())
