@@ -6,7 +6,7 @@ import com.fpt.util.DateTimeUtil;
 public class PublisherDTO {
     private long id;
     private String name;
-    private String img;
+    private String avatar;
     private String description;
 
     private String createAt;
@@ -19,11 +19,19 @@ public class PublisherDTO {
 
     public PublisherDTO(Publisher publisher) {
         this.name = publisher.getName();
+<<<<<<< HEAD
         this.img = publisher.getAvatar();
         this.description = publisher.getDescription();
         this.createAt = DateTimeUtil.formatDateFromLong(publisher.getCreatedAt());
         this.updateAt = DateTimeUtil.formatDateFromLong(publisher.getUpdatedAt());
         this.deleteAt = DateTimeUtil.formatDateFromLong(publisher.getUpdatedAt());
+=======
+        this.avatar = publisher.getAvatar();
+        this.description = publisher.getDescription();
+        this.createAt = DateTimeUtil.formatDateFromLong(publisher.getCreatedAt());
+        this.updateAt = DateTimeUtil.formatDateFromLong(publisher.getUpdatedAt());
+        this.deleteAt = DateTimeUtil.formatDateFromLong(publisher.getDeletedAt());
+>>>>>>> 7099d85cc537bd94fb2b5f2347474f2cb7ab7055
         this.status = publisher.getStatus() == 1 ? "Active" : "Deactive";
 
 
@@ -45,12 +53,12 @@ public class PublisherDTO {
         this.name = name;
     }
 
-    public String getImg() {
-        return img;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getDescription() {
@@ -92,5 +100,4 @@ public class PublisherDTO {
     public void setStatus(String status) {
         this.status = status;
     }
-
 }

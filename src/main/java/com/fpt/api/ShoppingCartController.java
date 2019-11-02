@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,18 @@ public class ShoppingCartController implements ShoppingCartInterface {
 
     // POST
     @RequestMapping(method = RequestMethod.POST, value = "/{bookId}")
+=======
+import java.util.ArrayList;
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/api/v1/shopping-cart")
+public class ShoppingCartController implements ShoppingCartInterface {
+    List<CartItem> itemList = new ArrayList<>();
+    @Autowired
+    BookService bookService;
+    @RequestMapping(method = RequestMethod.POST,value = "/{bookId}")
+>>>>>>> 7099d85cc537bd94fb2b5f2347474f2cb7ab7055
     @Override
     public ResponseEntity<Object> addCartItem(@PathVariable long bookId,
                                               @RequestParam(defaultValue = "1") int quantity,
@@ -33,6 +46,7 @@ public class ShoppingCartController implements ShoppingCartInterface {
         // 1. tìm sách theo id.
         // 2. tạo ra shopping cart
         // 3. add cart item với số lượng 1.
+<<<<<<< HEAD
 
         Book book = bookService.getById(bookId);
         if (book == null){
@@ -71,6 +85,40 @@ public class ShoppingCartController implements ShoppingCartInterface {
                 .setStatus(HttpStatus.OK.value())
                 .setMessage("Success!")
                 .addData(cartItem)
+=======
+        Book book = bookService.getById(bookId);
+        ShoppingCart shoppingCart = new ShoppingCart();
+        CartItem cartItem = new CartItem();
+        cartItem.setBookId(book.getId());
+        cartItem.setAuthorName(book.getAuthor().getName());
+        cartItem.setBookName(book.getName());
+        cartItem.setQuantity(1);
+        itemList.add(cartItem);
+        shoppingCart.setItems(itemList);
+        return new ResponseEntity<>(new RESTResponse.Success()
+                .setStatus(HttpStatus.CREATED.value())
+                .setMessage("Success!")
+                .addData(shoppingCart)
+                .build(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/{bookId}")
+    @Override
+    public ResponseEntity<Object> addCartItem(@PathVariable long bookId, @RequestParam int quantity) {
+        Book book = bookService.getById(bookId);
+        ShoppingCart shoppingCart = new ShoppingCart();
+        CartItem cartItem = new CartItem();
+        cartItem.setBookId(book.getId());
+        cartItem.setAuthorName(book.getAuthor().getName());
+        cartItem.setBookName(book.getName());
+        cartItem.setQuantity(quantity);
+        itemList.add(cartItem);
+        shoppingCart.setItems(itemList);
+        return new ResponseEntity<>(new RESTResponse.Success()
+                .setStatus(HttpStatus.CREATED.value())
+                .setMessage("Success!")
+                .addData(shoppingCart)
+>>>>>>> 7099d85cc537bd94fb2b5f2347474f2cb7ab7055
                 .build(), HttpStatus.OK);
     }
 

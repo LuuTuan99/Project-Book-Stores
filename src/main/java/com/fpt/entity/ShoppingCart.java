@@ -15,6 +15,9 @@ public class ShoppingCart {
         this.items = items;
     }
 
+<<<<<<< HEAD
     public void setItems(long id, CartItem item) { this.items.put(id,item);
     }
+=======
+>>>>>>> 7099d85cc537bd94fb2b5f2347474f2cb7ab7055
 }
